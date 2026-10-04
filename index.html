@@ -1,9 +1,12 @@
-!DOCTYPE html>
+!
+            
+
+    <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الحاسبة الصحية الشاملة - السعرات والوزن المثالي</title>
+    <title>الحاسبة الرياضية الشاملة - اللياقة والتغذية</title>
     <style>
         * {
             box-sizing: border-box;
@@ -12,81 +15,107 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         body {
-            background-color: #f4f7f6;
-            color: #333;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
             padding: 20px;
+            min-height: 100vh;
         }
         .container {
-            max-width: 500px;
+            max-width: 550px;
             margin: 0 auto;
-            background: #fff;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            background: rgba(30, 41, 59, 0.95);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255, 126, 95, 0.3);
         }
         h2 {
             text-align: center;
-            color: #2c3e50;
-            margin-bottom: 20px;
+            color: #ff7e5f;
+            margin-bottom: 25px;
+            font-size: 26px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
         label {
             display: block;
-            margin-bottom: 6px;
-            font-weight: bold;
-            color: #555;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #cbd5e1;
+            font-size: 14px;
         }
         input, select {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
+            padding: 12px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: #fff;
             font-size: 16px;
+            transition: all 0.3s;
+        }
+        input:focus, select:focus {
+            border-color: #ff7e5f;
+            outline: none;
+            box-shadow: 0 0 8px rgba(255, 126, 95, 0.4);
         }
         button {
             width: 100%;
-            padding: 12px;
-            background-color: #27ae60;
-            color: white;
+            padding: 14px;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: #fff;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 10px;
-            transition: background 0.3s;
+            margin-top: 15px;
+            transition: transform 0.2s, opacity 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 126, 95, 0.4);
         }
         button:hover {
-            background-color: #219653;
+            opacity: 0.9;
+            transform: translateY(-2px);
         }
         .result-box {
-            margin-top: 25px;
-            padding: 20px;
-            background: #e8f8f5;
-            border-right: 5px solid #27ae60;
-            border-radius: 6px;
+            margin-top: 30px;
+            padding: 22px;
+            background: #1e293b;
+            border-right: 6px solid #ff7e5f;
+            border-radius: 8px;
             display: none;
         }
         .result-box h3 {
-            color: #27ae60;
-            margin-bottom: 10px;
+            color: #ff7e5f;
+            margin-bottom: 15px;
+            font-size: 20px;
         }
         .result-item {
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             font-size: 15px;
+            line-height: 1.6;
+            color: #e2e8f0;
+        }
+        .macro-box {
+            margin-top: 15px;
+            padding: 12px;
+            background: #0f172a;
+            border-radius: 6px;
+            border: 1px solid #334155;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>🍎 الحاسبة الصحية الشاملة</h2>
+    <h2>🔥 الحاسبة الرياضية والتغذية</h2>
     
     <div class="form-group">
         <label for="age">العمر (سنوات):</label>
-        <input type="number" id="age" placeholder="مثال: 25">
+        <input type="number" id="age" placeholder="مثال: 24">
     </div>
 
     <div class="form-group">
@@ -99,84 +128,122 @@
 
     <div class="form-group">
         <label for="weight">الوزن الحالي (كجم):</label>
-        <input type="number" id="weight" placeholder="مثال: 70">
+        <input type="number" id="weight" placeholder="مثال: 75">
     </div>
 
     <div class="form-group">
         <label for="height">الطول (سم):</label>
-        <input type="number" id="height" placeholder="مثال: 175">
+        <input type="number" id="height" placeholder="مثال: 180">
     </div>
 
     <div class="form-group">
-        <label for="activity">مستوى النشاط البدني:</label>
-        <select id="activity">
-            <option value="1.2">قليل الحركة (بدون تمارين)</option>
-            <option value="1.375">خفيف النشاط (تمارين خفيفة 1-3 أيام أسبوعياً)</option>
-            <option value="1.55">متوسط النشاط (تمارين متوسطة 3-5 أيام أسبوعياً)</option>
-            <option value="1.725">عالي النشاط (تمارين مكثفة 6-7 أيام أسبوعياً)</option>
+        <label for="goal">الهدف الرياضي:</label>
+        <select id="goal">
+            <option value="lose">خسارة الدهون (تنشيف)</option>
+            <option value="maintain">الحفاظ على الوزن</option>
+            <option value="gain">بناء العضلات (تضخم)</option>
         </select>
     </div>
 
-    <button onclick="calculateHealth()">احسب الآن</button>
+    <div class="form-group">
+        <label for="activity">مستوى النشاط الأسبوعي:</label>
+        <select id="activity">
+            <option value="1.2">قليل الحركة (بدون تمارين)</option>
+            <option value="1.375">خفيف النشاط (تمارين خفيفة 1-3 أيام)</option>
+            <option value="1.55">متوسط النشاط (تمارين 3-5 أيام)</option>
+            <option value="1.725">عالي النشاط (تمارين مكثفة 6-7 أيام)</option>
+        </select>
+    </div>
+
+    <button onclick="calculateFitness()">احسب البرنامج الشامل</button>
 
     <div class="result-box" id="resultBox">
-        <h3>📊 نتائج تقييمك الصحي:</h3>
+        <h3>📊 تقرير الأداء والتقييم:</h3>
         <div class="result-item" id="bmiResult"></div>
         <div class="result-item" id="idealWeightResult"></div>
-        <div class="result-item" id="caloriesResult"></div>
+        <div class="result-item" id="targetCalories"></div>
+        
+        <div class="macro-box">
+            <div class="result-item" id="macrosResult"></div>
+        </div>
+
+        <div class="result-item" id="dietPlan" style="margin-top: 15px;"></div>
     </div>
 </div>
 
 <script>
-function calculateHealth() {
+function calculateFitness() {
     const age = parseFloat(document.getElementById('age').value);
     const gender = document.getElementById('gender').value;
     const weight = parseFloat(document.getElementById('weight').value);
     const height = parseFloat(document.getElementById('height').value);
+    const goal = document.getElementById('goal').value;
     const activity = parseFloat(document.getElementById('activity').value);
 
     if (!age || !weight || !height) {
-        alert('الرجاء إدخال العمر، الوزن، والطول بشكل صحيح!');
+        alert('الرجاء إكمال تعبئة الحقول الأساسية بدقة!');
         return;
     }
 
-    // 1. حساب مؤشر كتلة الجسم (BMI)
-    const heightInMeters = height / 100;
-    const bmi = (weight / (heightInMeters * heightInMeters)).toFixed(1);
+    // 1. مؤشر كتلة الجسم (BMI)
+    const heightM = height / 100;
+    const bmi = (weight / (heightM * heightM)).toFixed(1);
     let bmiStatus = '';
     if (bmi < 18.5) bmiStatus = 'نحافة';
-    else if (bmi >= 18.5 && bmi < 25) bmiStatus = 'وزن طبيعي وصحي ✅';
-    else if (bmi >= 25 && bmi < 30) bmiStatus = 'زيادة في الوزن';
+    else if (bmi >= 18.5 && bmi < 25) bmiStatus = 'وزن مثالي وصحي ✅';
+    else if (bmi >= 25 && bmi < 30) bmiStatus = 'زيادة وزن';
     else bmiStatus = 'سمنة';
 
-    // 2. حساب الوزن المثالي تقريبياً (معادلة ميلر)
-    let idealWeight = 0;
-    if (gender === 'male') {
-        idealWeight = 56.2 + 1.41 * ((height - 152.4) / 2.54);
+    // 2. الوزن المثالي
+    let idealWeight = gender === 'male' ? (56.2 + 1.41 * ((height - 152.4) / 2.54)) : (53.1 + 1.36 * ((height - 152.4) / 2.54));
+
+    // 3. السعرات الأساسية والثبات (BMR & TDEE)
+    let bmr = (10 * weight) + (6.25 * height) - (5 * age) + (gender === 'male' ? 5 : -161);
+    let maintenance = Math.round(bmr * activity);
+    let targetCal = maintenance;
+    let goalText = '';
+
+    if (goal === 'lose') {
+        targetCal = maintenance - 500;
+        goalText = 'خسارة الدهون (عجز 500 سعرة)';
+    } else if (goal === 'gain') {
+        targetCal = maintenance + 400;
+        goalText = 'بناء العضلات (فائض 400 سعرة)';
     } else {
-        idealWeight = 53.1 + 1.36 * ((height - 152.4) / 2.54);
+        goalText = 'ثبات وزني وصحي';
     }
 
-    // 3. حساب السعرات الحرارية (معادلة Mifflin-St Jeor)
-    let bmr = (10 * weight) + (6.25 * height) - (5 * age);
-    if (gender === 'male') {
-        bmr += 5;
-    } else {
-        bmr -= 161;
-    }
-    const maintenanceCalories = Math.round(bmr * activity);
-    const loseWeightCalories = maintenanceCalories - 500; // لنقصان الوزن
-    const gainWeightCalories = maintenanceCalories + 500; // لزيادة الوزن
+    // 4. حساب المغذيات الكبرى التقديرية (Macros)
+    // بروتين: تقريباً 2 جرام لكل كيلو من الوزن للرياضيين، كربوهيدرات ودهون باقية
+    let protein = Math.round(weight * 2);
+    let fat = Math.round((targetCal * 0.25) / 9);
+    let carbs = Math.round((targetCal - (protein * 4) - (fat * 9)) / 4);
+    if (carbs < 50) carbs = 50;
 
-    // عرض النتائج
-    const resultBox = document.getElementById('resultBox');
-    resultBox.style.display = 'block';
+    // 5. برنامج غذائي مقترح مبسط
+    let dietAdvice = '';
+    if (goal === 'lose') {
+        dietAdvice = '<b>🥗 مقترح الوجبات للتنشيف:</b> التركيز على مصادر البروتين الصافي (صدر دجاج، بيض، أسماك)، وتقليل النشويات البسيطة واستبدالها بالشوفان والرز البصري، مع الإكثار من الخضروات والسوائل.';
+    } else if (goal === 'gain') {
+        dietAdvice = '<b>💪 مقترح الوجبات للتضخم:</b> زيادة الحصص الغذائية من النشويات المعقدة (بطاطا مسلوقة، رز، شوفان)، مصادر الدهون الصحية (مكسرات، زبدة الفول السوداني)، والوجبات الغنية بالبروتين لدعم النمو العضلي.';
+    } else {
+        dietAdvice = '<b>⚖️ مقترح الوجبات للحفاظ على اللياقة:</b> نظام متوازن يوزع السعرات على 3 وجبات رئيسية مع وجبة خفيفة (سناك) تحتوي على الفواكه والمكسرات لضمان استقرار الطاقة طوال اليوم.';
+    }
+
+    // العرض في الواجهة
+    const resBox = document.getElementById('resultBox');
+    resBox.style.display = 'block';
 
     document.getElementById('bmiResult').innerHTML = `<b>• مؤشر كتلة الجسم (BMI):</b> ${bmi} (${bmiStatus})`;
-    document.getElementById('idealWeightResult').innerHTML = `<b>• الوزن المثالي التقريبي:</b> ${idealWeight.toFixed(1)} كجم`;
-    document.getElementById('caloriesResult').innerHTML = `<b>• السعرات للحفاظ على الوزن:</b> ${maintenanceCalories} سعرة حرارية<br>` +
-                                                        `<b>• السعرات لنقصان الوزن:</b> ${loseWeightCalories} سعرة حرارية<br>` +
-                                                        `<b>• السعرات لزيادة الوزن:</b> ${gainWeightCalories} سعرة حرارية`;
+    document.getElementById('idealWeightResult').innerHTML = `<b>• الوزن المثالي المقدر:</b> ${idealWeight.toFixed(1)} كجم`;
+    document.getElementById('targetCalories').innerHTML = `<b>• السعرات المستهدفة لهدفك (${goalText}):</b> <span style="color:#ff7e5f; font-weight:bold;">${targetCal} سعرة حرارية</span>`;
+    
+    document.getElementById('macrosResult').innerHTML = `<b>🥩 حصص المغذيات اليومية (Macros المقدرة):</b><br>` +
+                                                       `• البروتين: ${protein} جرام<br>` +
+                                                       `• الكربوهيدرات: ${carbs} جرام<br>` +
+                                                       `• الدهون الصحية: ${fat} جرام`;
+
+    document.getElementById('dietPlan').innerHTML = dietAdvice;
 }
 </script>
 
