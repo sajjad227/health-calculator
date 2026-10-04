@@ -1,12 +1,14 @@
-!
-            
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الحاسبة الرياضية الشاملة - اللياقة والتغذية</title>
+    <title>الحاسبة الرياضية الشاملة - حساب السعرات الحرارية ومؤشر كتلة الجسم BMI</title>
+    <!-- عناصر الـ SEO والظهور في محركات البحث -->
+    <meta name="description" content="أفضل حاسبة رياضية وصحية مجانية لحساب مؤشر كتلة الجسم (BMI)، السعرات الحرارية اليومية للتنشيف أو التضخم، وتحديد المغذيات الكبرى (Macros) والبرنامج الغذائي المناسب لهدفك.">
+    <meta name="keywords" content="حاسبة السعرات, حساب السعرات الحرارية, مؤشر كتلة الجسم, حاسبة التنشيف والتضخم, الوزن المثالي, السعرات اليومية, ماكروز">
+    <meta name="author" content="Fitness Calculator">
+    
     <style>
         * {
             box-sizing: border-box;
@@ -21,7 +23,7 @@
             min-height: 100vh;
         }
         .container {
-            max-width: 550px;
+            max-width: 600px;
             margin: 0 auto;
             background: rgba(30, 41, 59, 0.95);
             padding: 30px;
@@ -29,11 +31,11 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             border: 1px solid rgba(255, 126, 95, 0.3);
         }
-        h2 {
+        h1 {
             text-align: center;
             color: #ff7e5f;
             margin-bottom: 25px;
-            font-size: 26px;
+            font-size: 24px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -106,12 +108,31 @@
             border-radius: 6px;
             border: 1px solid #334155;
         }
+        /* قسم السيو والشرح لمحركات البحث */
+        .seo-section {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+        .seo-section h2 {
+            font-size: 18px;
+            color: #cbd5e1;
+            margin-bottom: 10px;
+            text-align: right;
+            text-transform: none;
+        }
+        .seo-section p {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>🔥 الحاسبة الرياضية والتغذية</h2>
+    <h1>🔥 الحاسبة الرياضية والتغذية الشاملة</h1>
     
     <div class="form-group">
         <label for="age">العمر (سنوات):</label>
@@ -169,6 +190,13 @@
 
         <div class="result-item" id="dietPlan" style="margin-top: 15px;"></div>
     </div>
+
+    <!-- مقال تعريفي لتعزيز الـ SEO في محركات البحث -->
+    <div class="seo-section">
+        <h2>لماذا تحتاج إلى حساب السعرات الحرارية ومؤشر كتلة الجسم؟</h2>
+        <p>تعتبر هذه الحاسبة الرياضية أداة أساسية لكل شخص يسعى لتحسين لياقته البدنية، سواء كان هدفه بناء العضلات (التضخم) أو حرق الدهون المتقن (التنشيف). من خلال معرفة <strong>مؤشر كتلة الجسم (BMI)</strong> والسعرات الدقيقة التي يحتاجها جسمك يومياً (TDEE)، يمكنك التحكم بنظامك الغذائي بكفاءة عالية.</p>
+        <p>كما يساعدك حساب المغذيات الكبرى أو الـ <strong>Macros</strong> (البروتين، الكربوهيدرات، والدهون) في توزيع وجباتك بشكل يضمن تحقيق أهدافك الرياضية والصحية بأسرع وقت ممكن وبأمان تامة.</p>
+    </div>
 </div>
 
 <script>
@@ -185,7 +213,6 @@ function calculateFitness() {
         return;
     }
 
-    // 1. مؤشر كتلة الجسم (BMI)
     const heightM = height / 100;
     const bmi = (weight / (heightM * heightM)).toFixed(1);
     let bmiStatus = '';
@@ -194,10 +221,8 @@ function calculateFitness() {
     else if (bmi >= 25 && bmi < 30) bmiStatus = 'زيادة وزن';
     else bmiStatus = 'سمنة';
 
-    // 2. الوزن المثالي
     let idealWeight = gender === 'male' ? (56.2 + 1.41 * ((height - 152.4) / 2.54)) : (53.1 + 1.36 * ((height - 152.4) / 2.54));
 
-    // 3. السعرات الأساسية والثبات (BMR & TDEE)
     let bmr = (10 * weight) + (6.25 * height) - (5 * age) + (gender === 'male' ? 5 : -161);
     let maintenance = Math.round(bmr * activity);
     let targetCal = maintenance;
@@ -213,24 +238,20 @@ function calculateFitness() {
         goalText = 'ثبات وزني وصحي';
     }
 
-    // 4. حساب المغذيات الكبرى التقديرية (Macros)
-    // بروتين: تقريباً 2 جرام لكل كيلو من الوزن للرياضيين، كربوهيدرات ودهون باقية
     let protein = Math.round(weight * 2);
     let fat = Math.round((targetCal * 0.25) / 9);
     let carbs = Math.round((targetCal - (protein * 4) - (fat * 9)) / 4);
     if (carbs < 50) carbs = 50;
 
-    // 5. برنامج غذائي مقترح مبسط
     let dietAdvice = '';
     if (goal === 'lose') {
-        dietAdvice = '<b>🥗 مقترح الوجبات للتنشيف:</b> التركيز على مصادر البروتين الصافي (صدر دجاج، بيض، أسماك)، وتقليل النشويات البسيطة واستبدالها بالشوفان والرز البصري، مع الإكثار من الخضروات والسوائل.';
+        dietAdvice = '<b>🥗 مقترح الوجبات للتنشيف:</b> التركيز على مصادر البروتين الصافي (صدر دجاج، بيض، أسماك)، وتقليل النشويات البسيطة واستبدالها بالشوفان والرز، مع الإكثار من الخضروات والسوائل.';
     } else if (goal === 'gain') {
         dietAdvice = '<b>💪 مقترح الوجبات للتضخم:</b> زيادة الحصص الغذائية من النشويات المعقدة (بطاطا مسلوقة، رز، شوفان)، مصادر الدهون الصحية (مكسرات، زبدة الفول السوداني)، والوجبات الغنية بالبروتين لدعم النمو العضلي.';
     } else {
         dietAdvice = '<b>⚖️ مقترح الوجبات للحفاظ على اللياقة:</b> نظام متوازن يوزع السعرات على 3 وجبات رئيسية مع وجبة خفيفة (سناك) تحتوي على الفواكه والمكسرات لضمان استقرار الطاقة طوال اليوم.';
     }
 
-    // العرض في الواجهة
     const resBox = document.getElementById('resultBox');
     resBox.style.display = 'block';
 
